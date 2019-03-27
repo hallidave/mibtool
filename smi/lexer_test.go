@@ -14,7 +14,7 @@ func TestLexer_Init(t *testing.T) {
 	r := strings.NewReader("IF-MIB DEFINITIONS\nfoo")
 	NewLexer(r)
 
-	if smiToknames[ACCESS-57343] != "ACCESS" || smiToknames[WRITE_SYNTAX-57343] != "WRITE-SYNTAX" {
+	if smiToknames[tACCESS-57343] != "ACCESS" || smiToknames[tWRITE_SYNTAX-57343] != "WRITE-SYNTAX" {
 		t.Fatal("token indexes changed - smi.y updated?")
 	}
 }
@@ -26,7 +26,7 @@ func TestLexer_Ident(t *testing.T) {
 	lval := &smiSymType{}
 	tok := lex.Lex(lval)
 
-	if tok != UPPERCASE_IDENTIFIER {
+	if tok != tUPPERCASE_IDENTIFIER {
 		t.Errorf("error")
 	}
 
@@ -37,7 +37,7 @@ func TestLexer_Ident(t *testing.T) {
 	lval = &smiSymType{}
 	tok = lex.Lex(lval)
 
-	if tok != DEFINITIONS {
+	if tok != tDEFINITIONS {
 		t.Errorf("error")
 	}
 
@@ -54,8 +54,8 @@ func TestLexer_QuotedString(t *testing.T) {
 	lval := &smiSymType{}
 	tok := lex.Lex(lval)
 
-	if tok != QUOTED_STRING {
-		t.Errorf("expected %d, got %d", QUOTED_STRING, tok)
+	if tok != tQUOTED_STRING {
+		t.Errorf("expected %d, got %d", tQUOTED_STRING, tok)
 	}
 
 	if lval.text != "hello\n   test\n" {
@@ -71,18 +71,18 @@ func TestLexer_Example(t *testing.T) {
 		integer32  int32
 		unsigned32 uint32
 	}{
-		{tok: LOWERCASE_IDENTIFIER, id: "a"},
-		{tok: LOWERCASE_IDENTIFIER, id: "foo"},
-		{tok: NEGATIVENUMBER, integer32: -42},
-		{tok: LOWERCASE_IDENTIFIER, id: "as-df"},
-		{tok: LOWERCASE_IDENTIFIER, id: "boo"},
+		{tok: tLOWERCASE_IDENTIFIER, id: "a"},
+		{tok: tLOWERCASE_IDENTIFIER, id: "foo"},
+		{tok: tNEGATIVENUMBER, integer32: -42},
+		{tok: tLOWERCASE_IDENTIFIER, id: "as-df"},
+		{tok: tLOWERCASE_IDENTIFIER, id: "boo"},
 		{tok: '-'},
 		{tok: '-'},
-		{tok: UPPERCASE_IDENTIFIER, id: "MOO"},
-		{tok: UPPERCASE_IDENTIFIER, id: "FASDFASD"},
-		{tok: QUOTED_STRING, text: "is quoted!"},
-		{tok: NUMBER, unsigned32: 42},
-		{tok: LOWERCASE_IDENTIFIER, id: "bar"},
+		{tok: tUPPERCASE_IDENTIFIER, id: "MOO"},
+		{tok: tUPPERCASE_IDENTIFIER, id: "FASDFASD"},
+		{tok: tQUOTED_STRING, text: "is quoted!"},
+		{tok: tNUMBER, unsigned32: 42},
+		{tok: tLOWERCASE_IDENTIFIER, id: "bar"},
 	}
 	r := strings.NewReader("a \nfoo--bar\n-42\n as-df boo- -MOO	 \t   \nFASDFASD \"is quoted!\"\n--blah\n--foo--42bar\n\n\r\n\r\n")
 	lex := NewLexer(r)
@@ -116,8 +116,8 @@ func TestLexer_ident(t *testing.T) {
 	lex := NewLexer(r)
 	value := &smiSymType{}
 	token := lex.Lex(value)
-	if token != LOWERCASE_IDENTIFIER {
-		t.Errorf("expected %d, got %d", LOWERCASE_IDENTIFIER, token)
+	if token != tLOWERCASE_IDENTIFIER {
+		t.Errorf("expected %d, got %d", tLOWERCASE_IDENTIFIER, token)
 	}
 	if value.id != "foo" {
 		t.Errorf("expected '%s', got %v", "foo", value)
@@ -129,8 +129,8 @@ func TestLexer_string(t *testing.T) {
 	lex := NewLexer(r)
 	value := &smiSymType{}
 	token := lex.Lex(value)
-	if token != QUOTED_STRING {
-		t.Errorf("expected %d, got %d", QUOTED_STRING, token)
+	if token != tQUOTED_STRING {
+		t.Errorf("expected %d, got %d", tQUOTED_STRING, token)
 	}
 	if value.text != "one\ntwo" {
 		t.Errorf("expected '%s', got %v", "one\ntwo", value)
@@ -142,8 +142,8 @@ func TestLexer_first_line_blank(t *testing.T) {
 	lex := NewLexer(r)
 	value := &smiSymType{}
 	token := lex.Lex(value)
-	if token != QUOTED_STRING {
-		t.Errorf("expected %d, got %d", QUOTED_STRING, token)
+	if token != tQUOTED_STRING {
+		t.Errorf("expected %d, got %d", tQUOTED_STRING, token)
 	}
 	if value.text != "\none\ntwo" {
 		t.Errorf("expected '%s', got '%v'", "\none\ntwo", value.text)
@@ -163,10 +163,10 @@ func TestLexer_comment(t *testing.T) {
 		{"-- test", lexEOF, ""},
 		{"-- test\n", lexEOF, ""},
 		{"-- one\n-- two", lexEOF, ""},
-		{"one -- test\n", LOWERCASE_IDENTIFIER, "one"},
-		{"two --test--\n", LOWERCASE_IDENTIFIER, "two"},
-		{"three--test", LOWERCASE_IDENTIFIER, "three"},
-		{"--test--four", LOWERCASE_IDENTIFIER, "four"},
+		{"one -- test\n", tLOWERCASE_IDENTIFIER, "one"},
+		{"two --test--\n", tLOWERCASE_IDENTIFIER, "two"},
+		{"three--test", tLOWERCASE_IDENTIFIER, "three"},
+		{"--test--four", tLOWERCASE_IDENTIFIER, "four"},
 	}
 
 	for _, tc := range testCases {
@@ -199,11 +199,11 @@ func TestLexer_HexBin(t *testing.T) {
 		outText  string
 		outErr   string
 	}{
-		{inText: "''H", outToken: HEX_STRING, outText: ""},
-		{inText: "'0101'h", outToken: HEX_STRING, outText: "0101"},
-		{inText: "'0101'B", outToken: BIN_STRING, outText: "0101"},
-		{inText: "'abcdef'H", outToken: HEX_STRING, outText: "abcdef"},
-		{inText: "'0'b", outToken: BIN_STRING, outText: "0"},
+		{inText: "''H", outToken: tHEX_STRING, outText: ""},
+		{inText: "'0101'h", outToken: tHEX_STRING, outText: "0101"},
+		{inText: "'0101'B", outToken: tBIN_STRING, outText: "0101"},
+		{inText: "'abcdef'H", outToken: tHEX_STRING, outText: "abcdef"},
+		{inText: "'0'b", outToken: tBIN_STRING, outText: "0"},
 		{inText: "'01012'B", outToken: lexEOF, outErr: "expected H character"},
 		{inText: "'0101'", outToken: lexEOF, outErr: "expected H or B character"},
 		{inText: "'123", outToken: lexEOF, outErr: "file ends with unterminated numeric string"},

@@ -4,11 +4,10 @@
 // that can be found in the LICENSE file.
 
 // Package mibs implements a parser for SNMP MIBs.
-package mibs
+package smi
 
 import (
 	"fmt"
-	"github.com/hallidave/mibtool/smi"
 	"io/ioutil"
 	"log"
 	"os"
@@ -18,11 +17,12 @@ import (
 	"strings"
 )
 
-// A MIB is a collection of SNMP modules.
+// A MIB is a collection of SNMP modules. The MIB provides a high-level
+// API for loading and accessing the contents of parsed MIBs.
 type MIB struct {
-	Modules   map[string]*smi.Module
-	Root      *smi.Symbol
-	Symbols   map[string]*smi.Symbol
+	Modules   map[string]*Module
+	Root      *Symbol
+	Symbols   map[string]*Symbol
 	Debug     bool
 	dirs      []string
 	loadOrder []string
@@ -30,7 +30,7 @@ type MIB struct {
 
 type parentRef struct {
 	Label string
-	Child *smi.Symbol
+	Child *Symbol
 }
 
 var replacementModule = map[string]string{
@@ -49,17 +49,17 @@ var replacementModule = map[string]string{
 func NewMIB(dirs ...string) *MIB {
 	mib := &MIB{
 		dirs:    dirs,
-		Modules: make(map[string]*smi.Module),
-		Symbols: make(map[string]*smi.Symbol),
+		Modules: make(map[string]*Module),
+		Symbols: make(map[string]*Symbol),
 	}
 
-	root := smi.Symbol{
+	root := Symbol{
 		Name:         "iso",
 		ID:           1,
 		Module:       nil,
 		Parent:       nil,
-		ChildByLabel: make(map[string]*smi.Symbol),
-		ChildByID:    make(map[int]*smi.Symbol),
+		ChildByLabel: make(map[string]*Symbol),
+		ChildByID:    make(map[int]*Symbol),
 	}
 	mib.Root = &root
 	mib.Symbols[root.Name] = &root
@@ -96,7 +96,7 @@ func (mib *MIB) LoadModules(modNames ...string) error {
 	return mib.indexModules()
 }
 
-func (mib *MIB) addSymbol(sym *smi.Symbol) bool {
+func (mib *MIB) addSymbol(sym *Symbol) bool {
 	if oldSym, ok := mib.Symbols[sym.Name]; ok {
 		if mib.Debug {
 			log.Printf("imported symbol %v duplicates name of %v, ignoring", sym, oldSym)
@@ -143,13 +143,13 @@ func (mib *MIB) indexModules() error {
 				} else {
 					label = n.Label
 				}
-				sym := &smi.Symbol{
+				sym := &Symbol{
 					Name:         label,
 					ID:           id,
 					Module:       mod,
 					Parent:       parent,
-					ChildByLabel: make(map[string]*smi.Symbol),
-					ChildByID:    make(map[int]*smi.Symbol),
+					ChildByLabel: make(map[string]*Symbol),
+					ChildByID:    make(map[int]*Symbol),
 				}
 				if sym.Name != "" {
 					mod.Symbols[sym.Name] = sym
@@ -180,7 +180,7 @@ func (mib *MIB) indexModules() error {
 	return nil
 }
 
-func (mib *MIB) findSymbol(mod *smi.Module, label string) *smi.Symbol {
+func (mib *MIB) findSymbol(mod *Module, label string) *Symbol {
 	if sym, ok := mod.Symbols[label]; ok {
 		return sym
 	}
@@ -220,7 +220,7 @@ func (mib *MIB) loadModule(modName string) error {
 	if mod.IsLoaded {
 		return nil
 	}
-	parsedMod, err := smi.ParseModule(mod.File)
+	parsedMod, err := ParseModule(mod.File)
 	if err != nil {
 		return err
 	}
@@ -230,7 +230,7 @@ func (mib *MIB) loadModule(modName string) error {
 	mod.Nodes = parsedMod.Nodes
 	mod.Imports = parsedMod.Imports
 	mod.IsLoaded = true
-	mod.Symbols = make(map[string]*smi.Symbol)
+	mod.Symbols = make(map[string]*Symbol)
 	err = mib.loadImports(mod.Imports)
 	if err != nil {
 		return fmt.Errorf("loading imports for %s: %v", modName, err)
@@ -240,7 +240,7 @@ func (mib *MIB) loadModule(modName string) error {
 	return nil
 }
 
-func (mib *MIB) loadImports(imports []smi.Import) error {
+func (mib *MIB) loadImports(imports []Import) error {
 	for _, imp := range imports {
 		err := mib.loadModule(imp.From)
 		if err != nil {
@@ -251,7 +251,7 @@ func (mib *MIB) loadImports(imports []smi.Import) error {
 }
 
 func (mib *MIB) scanDirs() error {
-	scanMods := make(map[string]*smi.Module)
+	scanMods := make(map[string]*Module)
 	for _, dirname := range mib.dirs {
 		if fi, err := os.Stat(dirname); !os.IsNotExist(err) {
 			if fi.IsDir() {
@@ -287,7 +287,7 @@ func (mib *MIB) scanDirs() error {
 	return nil
 }
 
-func scanDir(dirname string, scanMods *map[string]*smi.Module) error {
+func scanDir(dirname string, scanMods *map[string]*Module) error {
 	files, err := ioutil.ReadDir(dirname)
 	if err != nil {
 		return err
@@ -300,10 +300,10 @@ func scanDir(dirname string, scanMods *map[string]*smi.Module) error {
 		if fi.IsDir() {
 			continue
 		}
-		if moduleName, err := smi.ModuleName(absPath); err == nil {
-			(*scanMods)[moduleName] = &smi.Module{Name: moduleName, File: absPath}
+		if moduleName, err := ModuleName(absPath); err == nil {
+			(*scanMods)[moduleName] = &Module{Name: moduleName, File: absPath}
 		} else {
-			if _, ok := err.(smi.NotAModuleError); !ok {
+			if _, ok := err.(NotAModuleError); !ok {
 				return err
 			}
 		}
@@ -311,10 +311,10 @@ func scanDir(dirname string, scanMods *map[string]*smi.Module) error {
 	return nil
 }
 
-// Symbol returns the smi.Symbol and an smi.OID index for the specified OID.
-func (mib *MIB) Symbol(oid smi.OID) (*smi.Symbol, smi.OID) {
+// Symbol returns the Symbol and an OID index for the specified OID.
+func (mib *MIB) Symbol(oid OID) (*Symbol, OID) {
 	sym := mib.Root
-	var prev *smi.Symbol = nil
+	var prev *Symbol = nil
 	for i := 0; ; {
 		if sym != nil && sym.ID == oid[i] {
 			i++
@@ -326,14 +326,14 @@ func (mib *MIB) Symbol(oid smi.OID) (*smi.Symbol, smi.OID) {
 			prev = sym
 			sym = child
 		} else {
-			return sym, smi.OID{}
+			return sym, OID{}
 		}
 	}
 }
 
 // SymbolString returns a string representation of the information
 // provided by the Symbol function.
-func (mib *MIB) SymbolString(oid smi.OID) string {
+func (mib *MIB) SymbolString(oid OID) string {
 	if len(oid) == 0 {
 		return ""
 	}
@@ -349,9 +349,9 @@ func (mib *MIB) SymbolString(oid smi.OID) string {
 
 // OID parses the name string in the format provided by the
 // SymbolString function (e.g. Module::Symbol.1.2.3) and returns
-// an smi.OID object. The module and index parts of the string are
+// an OID object. The module and index parts of the string are
 // optional.
-func (mib *MIB) OID(name string) (smi.OID, error) {
+func (mib *MIB) OID(name string) (OID, error) {
 	var modulePart string
 	var namePart string
 	var indexPart string
@@ -371,7 +371,7 @@ func (mib *MIB) OID(name string) (smi.OID, error) {
 		return nil, fmt.Errorf("missing OID name")
 	}
 
-	var sym *smi.Symbol
+	var sym *Symbol
 	if modulePart == "" {
 		sym = mib.Symbols[namePart]
 		if sym == nil {
@@ -388,7 +388,7 @@ func (mib *MIB) OID(name string) (smi.OID, error) {
 		}
 	}
 
-	var idx smi.OID
+	var idx OID
 	if indexPart != "" {
 		idxParts := strings.Split(indexPart, ".")
 		for _, part := range idxParts {
@@ -405,23 +405,23 @@ func (mib *MIB) OID(name string) (smi.OID, error) {
 	return append(oid, idx...), nil
 }
 
-func (mib *MIB) symbolOID(sym *smi.Symbol) smi.OID {
-	path := smi.OID{sym.ID}
+func (mib *MIB) symbolOID(sym *Symbol) OID {
+	path := OID{sym.ID}
 	for parent := sym.Parent; parent != nil; parent = parent.Parent {
-		path = append(smi.OID{parent.ID}, path...)
+		path = append(OID{parent.ID}, path...)
 	}
 	return path
 }
 
 // VisitSymbols walks all symbols defined in the MIB in order by OID. The action function
 // is called once for each symbol.
-func (mib *MIB) VisitSymbols(action func(sym *smi.Symbol, oid smi.OID)) {
+func (mib *MIB) VisitSymbols(action func(sym *Symbol, oid OID)) {
 	sym := mib.Root
-	oid := smi.OID{sym.ID}
+	oid := OID{sym.ID}
 	visitChildSymbols(sym, oid, action)
 }
 
-func visitChildSymbols(sym *smi.Symbol, oid smi.OID, action func(sym *smi.Symbol, oid smi.OID)) {
+func visitChildSymbols(sym *Symbol, oid OID, action func(sym *Symbol, oid OID)) {
 	var keys []int
 	for k := range sym.ChildByID {
 		keys = append(keys, k)
@@ -429,7 +429,7 @@ func visitChildSymbols(sym *smi.Symbol, oid smi.OID, action func(sym *smi.Symbol
 	sort.Ints(keys)
 	for _, k := range keys {
 		childSym := sym.ChildByID[k]
-		childOID := append(smi.OID{}, oid...)
+		childOID := append(OID{}, oid...)
 		childOID = append(childOID, childSym.ID)
 		action(childSym, childOID)
 		visitChildSymbols(childSym, childOID, action)

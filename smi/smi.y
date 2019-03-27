@@ -89,102 +89,102 @@ package smi
 /*
  * Tokens and their attributes.
  */
-%token DOT_DOT
-%token COLON_COLON_EQUAL
+%token tDOT_DOT
+%token tCOLON_COLON_EQUAL
 
-%token <id>UPPERCASE_IDENTIFIER
-%token <id>LOWERCASE_IDENTIFIER
-%token <unsigned32>NUMBER
-%token <integer32>NEGATIVENUMBER
-%token <unsigned64>NUMBER64
-%token <integer64>NEGATIVENUMBER64
-%token <text>BIN_STRING
-%token <text>HEX_STRING
-%token <text>QUOTED_STRING
+%token <id>tUPPERCASE_IDENTIFIER
+%token <id>tLOWERCASE_IDENTIFIER
+%token <unsigned32>tNUMBER
+%token <integer32>tNEGATIVENUMBER
+%token <unsigned64>tNUMBER64
+%token <integer64>tNEGATIVENUMBER64
+%token <text>tBIN_STRING
+%token <text>tHEX_STRING
+%token <text>tQUOTED_STRING
 
-%token <id>ACCESS
-%token <id>AGENT_CAPABILITIES
-%token <id>APPLICATION
-%token <id>AUGMENTS
-%token <id>BEGIN_
-%token <id>BITS
-%token <id>CHOICE
-%token <id>CONTACT_INFO
-%token <id>CREATION_REQUIRES
-%token <id>COUNTER32
-%token <id>COUNTER64
-%token <id>DEFINITIONS
-%token <id>DEFVAL
-%token <id>DESCRIPTION
-%token <id>DISPLAY_HINT
-%token <id>END
-%token <id>ENTERPRISE
-%token <id>EXPORTS
-%token <id>EXTENDS
-%token <id>FROM
-%token <id>GROUP
-%token <id>GAUGE32
-%token <id>IDENTIFIER
-%token <id>IMPLICIT
-%token <id>IMPLIED
-%token <id>IMPORTS
-%token <id>INCLUDES
-%token <id>INDEX
-%token <id>INSTALL_ERRORS
-%token <id>INTEGER
-%token <id>INTEGER32
-%token <id>INTEGER64
-%token <id>IPADDRESS
-%token <id>LAST_UPDATED
-%token <id>MACRO
-%token <id>MANDATORY_GROUPS
-%token <id>MAX_ACCESS
-%token <id>MIN_ACCESS
-%token <id>MODULE
-%token <id>MODULE_COMPLIANCE
-%token <id>MODULE_IDENTITY
-%token <id>NOT_ACCESSIBLE
-%token <id>NOTIFICATIONS
-%token <id>NOTIFICATION_GROUP
-%token <id>NOTIFICATION_TYPE
-%token <id>OBJECT
-%token <id>OBJECT_GROUP
-%token <id>OBJECT_IDENTITY
-%token <id>OBJECT_TYPE
-%token <id>OBJECTS
-%token <id>OCTET
-%token <id>OF
-%token <id>ORGANIZATION
-%token <id>OPAQUE
-%token <id>PIB_ACCESS
-%token <id>PIB_DEFINITIONS
-%token <id>PIB_INDEX
-%token <id>PIB_MIN_ACCESS
-%token <id>PIB_REFERENCES
-%token <id>PIB_TAG
-%token <id>POLICY_ACCESS
-%token <id>PRODUCT_RELEASE
-%token <id>REFERENCE
-%token <id>REVISION
-%token <id>SEQUENCE
-%token <id>SIZE
-%token <id>STATUS
-%token <id>STRING
-%token <id>SUBJECT_CATEGORIES
-%token <id>SUPPORTS
-%token <id>SYNTAX
-%token <id>TEXTUAL_CONVENTION
-%token <id>TIMETICKS
-%token <id>TRAP_TYPE
-%token <id>UNIQUENESS
-%token <id>UNITS
-%token <id>UNIVERSAL
-%token <id>UNSIGNED32
-%token <id>UNSIGNED64
-%token <id>VALUE
-%token <id>VARIABLES
-%token <id>VARIATION
-%token <id>WRITE_SYNTAX
+%token <id>tACCESS
+%token <id>tAGENT_CAPABILITIES
+%token <id>tAPPLICATION
+%token <id>tAUGMENTS
+%token <id>tBEGIN_
+%token <id>tBITS
+%token <id>tCHOICE
+%token <id>tCONTACT_INFO
+%token <id>tCREATION_REQUIRES
+%token <id>tCOUNTER32
+%token <id>tCOUNTER64
+%token <id>tDEFINITIONS
+%token <id>tDEFVAL
+%token <id>tDESCRIPTION
+%token <id>tDISPLAY_HINT
+%token <id>tEND
+%token <id>tENTERPRISE
+%token <id>tEXPORTS
+%token <id>tEXTENDS
+%token <id>tFROM
+%token <id>tGROUP
+%token <id>tGAUGE32
+%token <id>tIDENTIFIER
+%token <id>tIMPLICIT
+%token <id>tIMPLIED
+%token <id>tIMPORTS
+%token <id>tINCLUDES
+%token <id>tINDEX
+%token <id>tINSTALL_ERRORS
+%token <id>tINTEGER
+%token <id>tINTEGER32
+%token <id>tINTEGER64
+%token <id>tIPADDRESS
+%token <id>tLAST_UPDATED
+%token <id>tMACRO
+%token <id>tMANDATORY_GROUPS
+%token <id>tMAX_ACCESS
+%token <id>tMIN_ACCESS
+%token <id>tMODULE
+%token <id>tMODULE_COMPLIANCE
+%token <id>tMODULE_IDENTITY
+%token <id>tNOT_ACCESSIBLE
+%token <id>tNOTIFICATIONS
+%token <id>tNOTIFICATION_GROUP
+%token <id>tNOTIFICATION_TYPE
+%token <id>tOBJECT
+%token <id>tOBJECT_GROUP
+%token <id>tOBJECT_IDENTITY
+%token <id>tOBJECT_TYPE
+%token <id>tOBJECTS
+%token <id>tOCTET
+%token <id>tOF
+%token <id>tORGANIZATION
+%token <id>tOPAQUE
+%token <id>tPIB_ACCESS
+%token <id>tPIB_DEFINITIONS
+%token <id>tPIB_INDEX
+%token <id>tPIB_MIN_ACCESS
+%token <id>tPIB_REFERENCES
+%token <id>tPIB_TAG
+%token <id>tPOLICY_ACCESS
+%token <id>tPRODUCT_RELEASE
+%token <id>tREFERENCE
+%token <id>tREVISION
+%token <id>tSEQUENCE
+%token <id>tSIZE
+%token <id>tSTATUS
+%token <id>tSTRING
+%token <id>tSUBJECT_CATEGORIES
+%token <id>tSUPPORTS
+%token <id>tSYNTAX
+%token <id>tTEXTUAL_CONVENTION
+%token <id>tTIMETICKS
+%token <id>tTRAP_TYPE
+%token <id>tUNIQUENESS
+%token <id>tUNITS
+%token <id>tUNIVERSAL
+%token <id>tUNSIGNED32
+%token <id>tUNSIGNED64
+%token <id>tVALUE
+%token <id>tVARIABLES
+%token <id>tVARIATION
+%token <id>tWRITE_SYNTAX
 
 
 
@@ -371,11 +371,11 @@ modules:		module
 module:			moduleName
 			moduleOid
 			definitions
-			COLON_COLON_EQUAL BEGIN_
+			tCOLON_COLON_EQUAL tBEGIN_
 			exportsClause
 			linkagePart
 			declarationPart
-			END
+			tEND
 			{
 				m := Module{Name: $1, Imports: $7, Nodes: $8}
 				setModule(&smilex, &m)
@@ -388,9 +388,9 @@ moduleOid:		'{' objectIdentifier '}'
                         {}
 	;
 
-definitions:            DEFINITIONS
+definitions:            tDEFINITIONS
                         {}
-        |               PIB_DEFINITIONS
+        |               tPIB_DEFINITIONS
                         {}
         ;
 
@@ -404,7 +404,7 @@ linkagePart:		linkageClause
 			}
 	;
 
-linkageClause:		IMPORTS importPart ';'
+linkageClause:		tIMPORTS importPart ';'
 			{
 				$$ = $2
 			}
@@ -412,7 +412,7 @@ linkageClause:		IMPORTS importPart ';'
 
 exportsClause:		/* empty */
 			{}
-	|		EXPORTS
+	|		tEXPORTS
 			{}
 			/* the scanner skips until... */
 			';'
@@ -437,7 +437,7 @@ imports:		import
 	;
 
 import:			importIdentifiers
-                        FROM
+                        tFROM
                         moduleName
 			{
 				$$ = Import{From: $3, Symbols: $1}
@@ -457,8 +457,8 @@ importIdentifiers:	importIdentifier
 /*
  * Note that some named types must not be imported, REF:RFC1902,590 .
  */
-importIdentifier:	LOWERCASE_IDENTIFIER
-	|		UPPERCASE_IDENTIFIER
+importIdentifier:	tLOWERCASE_IDENTIFIER
+	|		tUPPERCASE_IDENTIFIER
 	|		importedKeyword
 	;
 
@@ -470,35 +470,35 @@ importedKeyword:	importedSMIKeyword
                         {}
         |               importedSPPIKeyword
                         {}
-        |               BITS
-	|		INTEGER32
-	|		IPADDRESS
-	|		MANDATORY_GROUPS
-	|		MODULE_COMPLIANCE
-	|		MODULE_IDENTITY
-	|		OBJECT_GROUP
-	|		OBJECT_IDENTITY
-	|		OBJECT_TYPE
-	|		OPAQUE
-	|		TEXTUAL_CONVENTION
-	|		TIMETICKS
-	|		UNSIGNED32
+        |               tBITS
+	|		tINTEGER32
+	|		tIPADDRESS
+	|		tMANDATORY_GROUPS
+	|		tMODULE_COMPLIANCE
+	|		tMODULE_IDENTITY
+	|		tOBJECT_GROUP
+	|		tOBJECT_IDENTITY
+	|		tOBJECT_TYPE
+	|		tOPAQUE
+	|		tTEXTUAL_CONVENTION
+	|		tTIMETICKS
+	|		tUNSIGNED32
         ;
 
-importedSMIKeyword:     AGENT_CAPABILITIES
-	|		COUNTER32
-	|		COUNTER64
-	|		GAUGE32
-	|		NOTIFICATION_GROUP
-	|		NOTIFICATION_TYPE
-	|		TRAP_TYPE
+importedSMIKeyword:     tAGENT_CAPABILITIES
+	|		tCOUNTER32
+	|		tCOUNTER64
+	|		tGAUGE32
+	|		tNOTIFICATION_GROUP
+	|		tNOTIFICATION_TYPE
+	|		tTRAP_TYPE
 	;
 
-importedSPPIKeyword:	INTEGER64
-	|		UNSIGNED64
+importedSPPIKeyword:	tINTEGER64
+	|		tUNSIGNED64
 	;
 
-moduleName:		UPPERCASE_IDENTIFIER
+moduleName:		tUPPERCASE_IDENTIFIER
 	;
 
 /*
@@ -570,34 +570,34 @@ declaration:		typeDeclaration
 
 /*
  * Macro clauses. Its contents are not really parsed, but skipped by
- * the scanner until 'END' is read. This is just to make the SMI
+ * the scanner until 'tEND' is read. This is just to make the SMI
  * documents readable.
  */
 macroClause:		macroName
 			{
 			}
-			MACRO
+			tMACRO
 			{
 			}
 			/* the scanner skips until... */
-			END
+			tEND
 			{
                         }
 	;
 
-macroName:		MODULE_IDENTITY     { $$ = $1; }
-	|		OBJECT_TYPE	    { $$ = $1; }
-	|		TRAP_TYPE	    { $$ = $1; }
-	|		NOTIFICATION_TYPE   { $$ = $1; }
-	|		OBJECT_IDENTITY	    { $$ = $1; }
-	|		TEXTUAL_CONVENTION  { $$ = $1; }
-	|		OBJECT_GROUP	    { $$ = $1; }
-	|		NOTIFICATION_GROUP  { $$ = $1; }
-	|		MODULE_COMPLIANCE   { $$ = $1; }
-	|		AGENT_CAPABILITIES  { $$ = $1; }
+macroName:		tMODULE_IDENTITY     { $$ = $1; }
+	|		tOBJECT_TYPE	    { $$ = $1; }
+	|		tTRAP_TYPE	    { $$ = $1; }
+	|		tNOTIFICATION_TYPE   { $$ = $1; }
+	|		tOBJECT_IDENTITY	    { $$ = $1; }
+	|		tTEXTUAL_CONVENTION  { $$ = $1; }
+	|		tOBJECT_GROUP	    { $$ = $1; }
+	|		tNOTIFICATION_GROUP  { $$ = $1; }
+	|		tMODULE_COMPLIANCE   { $$ = $1; }
+	|		tAGENT_CAPABILITIES  { $$ = $1; }
 	;
 
-choiceClause:		CHOICE
+choiceClause:		tCHOICE
 			{
 			}
 			/* the scanner skips until... */
@@ -609,19 +609,18 @@ choiceClause:		CHOICE
 /*
  * The only ASN.1 value declarations are for OIDs, REF:RFC1902,491 .
  */
-fuzzy_lowercase_identifier:	LOWERCASE_IDENTIFIER
+fuzzy_lowercase_identifier:	tLOWERCASE_IDENTIFIER
 			{
 			}
 	|
-			UPPERCASE_IDENTIFIER
+			tUPPERCASE_IDENTIFIER
 			{
 			}
 	;
 
-/* valueDeclaration:	LOWERCASE_IDENTIFIER */
 valueDeclaration:	fuzzy_lowercase_identifier
-			OBJECT IDENTIFIER
-			COLON_COLON_EQUAL '{' objectIdentifier '}'
+			tOBJECT tIDENTIFIER
+			tCOLON_COLON_EQUAL '{' objectIdentifier '}'
 			{
 				$$ = Node{Label: $1, Type: NodeObjectID, IDs: $6}
 			}
@@ -633,12 +632,12 @@ valueDeclaration:	fuzzy_lowercase_identifier
 typeDeclaration:	typeName
 			{
 			}
-			COLON_COLON_EQUAL typeDeclarationRHS
+			tCOLON_COLON_EQUAL typeDeclarationRHS
 			{
 			}
 	;
 
-typeName:		UPPERCASE_IDENTIFIER
+typeName:		tUPPERCASE_IDENTIFIER
 			{
 			}
 	|		typeSMI
@@ -655,35 +654,35 @@ typeSMI:                typeSMIandSPPI
                         }
         ;
 
-typeSMIandSPPI:		IPADDRESS
-	|		TIMETICKS
-	|		OPAQUE
-	|		INTEGER32
-	|		UNSIGNED32
+typeSMIandSPPI:		tIPADDRESS
+	|		tTIMETICKS
+	|		tOPAQUE
+	|		tINTEGER32
+	|		tUNSIGNED32
         ;
 
-typeSMIonly:		COUNTER32
-	|		GAUGE32
-	|		COUNTER64
+typeSMIonly:		tCOUNTER32
+	|		tGAUGE32
+	|		tCOUNTER64
 	;
 
-typeSPPIonly:           INTEGER64
-        |               UNSIGNED64
+typeSPPIonly:           tINTEGER64
+        |               tUNSIGNED64
         ;
 
 typeDeclarationRHS:	Syntax
 			{
 			}
-	|		TEXTUAL_CONVENTION
+	|		tTEXTUAL_CONVENTION
 			{
 			}
 			DisplayPart
-			STATUS Status
-			DESCRIPTION Text
+			tSTATUS Status
+			tDESCRIPTION Text
 			{
 			}
 			ReferPart
-			SYNTAX Syntax
+			tSYNTAX Syntax
 			{
 			}
 	|		choiceClause
@@ -692,12 +691,12 @@ typeDeclarationRHS:	Syntax
 	;
 
 /* REF:RFC1902,7.1.12. */
-conceptualTable:	SEQUENCE OF row
+conceptualTable:	tSEQUENCE tOF row
 			{
 			}
 	;
 
-row:			UPPERCASE_IDENTIFIER
+row:			tUPPERCASE_IDENTIFIER
 			/*
 			 * In this case, we do NOT allow `Module.Type'.
 			 * The identifier must be defined in the local
@@ -708,7 +707,7 @@ row:			UPPERCASE_IDENTIFIER
 	;
 
 /* REF:RFC1902,7.1.12. */
-entryType:		SEQUENCE '{' sequenceItems '}'
+entryType:		tSEQUENCE '{' sequenceItems '}'
 			{
 			}
 ;
@@ -727,7 +726,7 @@ sequenceItems:		sequenceItem
  * NOTE: REF:RFC1902,7.1.12. was less clear, it said:
  * `normally omitting the sub-typing information'
  */
-sequenceItem:		LOWERCASE_IDENTIFIER sequenceSyntax
+sequenceItem:		tLOWERCASE_IDENTIFIER sequenceSyntax
 			{
 			}
 	;
@@ -735,7 +734,7 @@ sequenceItem:		LOWERCASE_IDENTIFIER sequenceSyntax
 Syntax:			ObjectSyntax
 			{
 			}
-	|		BITS '{' NamedBits '}'
+	|		tBITS '{' NamedBits '}'
 			{
 			}
 	;
@@ -744,10 +743,10 @@ sequenceSyntax:		/* ObjectSyntax */
 			sequenceObjectSyntax
 			{
 			}
-	|		BITS
+	|		tBITS
 			{
 			}
-	|		UPPERCASE_IDENTIFIER anySubType
+	|		tUPPERCASE_IDENTIFIER anySubType
 			{
 			}
 	;
@@ -760,34 +759,34 @@ NamedBits:		NamedBit
 			}
 	;
 
-NamedBit:		LOWERCASE_IDENTIFIER
+NamedBit:		tLOWERCASE_IDENTIFIER
 			{
 			}
-			'(' NUMBER ')'
+			'(' tNUMBER ')'
 			{
 			}
 	;
 
-objectIdentityClause:	LOWERCASE_IDENTIFIER
-			OBJECT_IDENTITY
-			STATUS Status
-			DESCRIPTION Text
+objectIdentityClause:	tLOWERCASE_IDENTIFIER
+			tOBJECT_IDENTITY
+			tSTATUS Status
+			tDESCRIPTION Text
 			ReferPart
-			COLON_COLON_EQUAL
+			tCOLON_COLON_EQUAL
 			'{' objectIdentifier '}'
 			{
 				$$ = Node{Label: $1, Type: NodeObjectID, IDs: $10}
 			}
 	;
 
-objectTypeClause:	LOWERCASE_IDENTIFIER
-			OBJECT_TYPE
-			SYNTAX Syntax                /* old $6, new $6 */
+objectTypeClause:	tLOWERCASE_IDENTIFIER
+			tOBJECT_TYPE
+			tSYNTAX Syntax                /* old $6, new $6 */
 		        UnitsPart                    /* old $7, new $7 */
                         MaxOrPIBAccessPart           /* old $8, new $8 */
                         SPPIPibReferencesPart        /* SPPI only, $9 */
                         SPPIPibTagPart               /* SPPI only, $10 */
-			STATUS Status                /* old $9 $10, new $11 $12 */
+			tSTATUS Status                /* old $9 $10, new $11 $12 */
 			descriptionClause            /* old $11, new $13 */
                         SPPIErrorsPart               /* SPPI only, $14 */
 			ReferPart                    /* old $12, new $15 */
@@ -795,7 +794,7 @@ objectTypeClause:	LOWERCASE_IDENTIFIER
                         MibIndex                     /* new, $17 */
                         SPPIUniquePart               /* SPPI only, $18 */
 			DefValPart                   /* old $14, new $19 */
-			COLON_COLON_EQUAL '{' ObjectName '}' /* old $17, new $22 */
+			tCOLON_COLON_EQUAL '{' ObjectName '}' /* old $17, new $22 */
 			{
 				$$ = Node{Label: $1, Type: NodeObjectType, IDs: $20}
 			}
@@ -804,7 +803,7 @@ objectTypeClause:	LOWERCASE_IDENTIFIER
 descriptionClause:	/* empty */
 			{
 			}
-	|		DESCRIPTION Text
+	|		tDESCRIPTION Text
 			{
 			}
 	;
@@ -812,19 +811,19 @@ descriptionClause:	/* empty */
 trapTypeClause:		fuzzy_lowercase_identifier
 			{
 			}
-			TRAP_TYPE
+			tTRAP_TYPE
 			{
 			}
-			ENTERPRISE objectIdentifier
+			tENTERPRISE objectIdentifier
 			VarPart
 			DescrPart
 			ReferPart
-			COLON_COLON_EQUAL NUMBER
+			tCOLON_COLON_EQUAL tNUMBER
 			{
 			}
 	;
 
-VarPart:		VARIABLES '{' VarTypes '}'
+VarPart:		tVARIABLES '{' VarTypes '}'
 			{
 			}
 	|		/* empty */
@@ -845,7 +844,7 @@ VarType:		ObjectName
 			}
 	;
 
-DescrPart:		DESCRIPTION Text
+DescrPart:		tDESCRIPTION Text
 			{
 			}
 	|		/* empty */
@@ -866,14 +865,14 @@ PibAccessPart:          PibAccess Access
                         { }
         ;
 
-PibAccess:              POLICY_ACCESS
+PibAccess:              tPOLICY_ACCESS
                         {
                         }
-        |               PIB_ACCESS
+        |               tPIB_ACCESS
                         { }
         ;
 
-SPPIPibReferencesPart:  PIB_REFERENCES
+SPPIPibReferencesPart:  tPIB_REFERENCES
                         {
                         }
                         '{' Entry '}'
@@ -882,7 +881,7 @@ SPPIPibReferencesPart:  PIB_REFERENCES
                         {}
         ;
 
-SPPIPibTagPart:         PIB_TAG
+SPPIPibTagPart:         tPIB_TAG
                         {
                         }
                         '{' ObjectName '}'
@@ -892,7 +891,7 @@ SPPIPibTagPart:         PIB_TAG
         ;
 
 
-SPPIUniquePart:         UNIQUENESS
+SPPIUniquePart:         tUNIQUENESS
                         {
                         }
                         '{' UniqueTypesPart '}'
@@ -919,7 +918,7 @@ UniqueType:             ObjectName
                         {}
         ;
 
-SPPIErrorsPart:         INSTALL_ERRORS
+SPPIErrorsPart:         tINSTALL_ERRORS
                         {
                         }
                         '{' Errors '}'
@@ -936,53 +935,53 @@ Errors:                 Error
                         }
         ;
 
-Error:                  LOWERCASE_IDENTIFIER '(' NUMBER ')'
+Error:                  tLOWERCASE_IDENTIFIER '(' tNUMBER ')'
 			{
 			}
         ;
 
 
-MaxAccessPart:		MAX_ACCESS
+MaxAccessPart:		tMAX_ACCESS
 			{
 			}
 			Access
 			{ }
-	|		ACCESS
+	|		tACCESS
 			{
 			}
 			Access
 			{ }
 	;
 
-notificationTypeClause:	LOWERCASE_IDENTIFIER
-			NOTIFICATION_TYPE
+notificationTypeClause:	tLOWERCASE_IDENTIFIER
+			tNOTIFICATION_TYPE
 			NotificationObjectsPart
-			STATUS Status
-			DESCRIPTION Text
+			tSTATUS Status
+			tDESCRIPTION Text
 			ReferPart
-			COLON_COLON_EQUAL
+			tCOLON_COLON_EQUAL
 			'{' NotificationName '}'
 			{
 				$$ = Node{Label: $1, Type: NodeNotification, IDs: $11}
 			}
 	;
 
-moduleIdentityClause:	LOWERCASE_IDENTIFIER
-			MODULE_IDENTITY
+moduleIdentityClause:	tLOWERCASE_IDENTIFIER
+			tMODULE_IDENTITY
                         SubjectCategoriesPart        /* SPPI only */
-			LAST_UPDATED ExtUTCTime
-			ORGANIZATION Text
-			CONTACT_INFO Text
-			DESCRIPTION Text
+			tLAST_UPDATED ExtUTCTime
+			tORGANIZATION Text
+			tCONTACT_INFO Text
+			tDESCRIPTION Text
 			RevisionPart
-			COLON_COLON_EQUAL
+			tCOLON_COLON_EQUAL
 			'{' objectIdentifier '}'
 			{
 				$$ = Node{Label: $1, Type: NodeModuleID, IDs: $15}
 			}
         ;
 
-SubjectCategoriesPart:  SUBJECT_CATEGORIES '{' SubjectCategories '}'
+SubjectCategoriesPart:  tSUBJECT_CATEGORIES '{' SubjectCategories '}'
                         {
                         }
         |               /* empty */
@@ -1003,10 +1002,10 @@ CategoryIDs:            CategoryID
 			}
         ;
 
-CategoryID:		LOWERCASE_IDENTIFIER
+CategoryID:		tLOWERCASE_IDENTIFIER
                         {
                         }
-        |               LOWERCASE_IDENTIFIER '(' NUMBER ')'
+        |               tLOWERCASE_IDENTIFIER '(' tNUMBER ')'
 			{
 			}
         ;
@@ -1023,7 +1022,7 @@ ObjectSyntax:		SimpleSyntax
 	|		row		     /* the uppercase name of a row  */
 			{
 			}
-	|		entryType	     /* SEQUENCE { ... } phrase */
+	|		entryType	     /* tSEQUENCE { ... } phrase */
 			{
 			}
 	|		ApplicationSyntax
@@ -1031,9 +1030,9 @@ ObjectSyntax:		SimpleSyntax
 			}
         ;
 
-typeTag:		'[' APPLICATION NUMBER ']' IMPLICIT
+typeTag:		'[' tAPPLICATION tNUMBER ']' tIMPLICIT
 			{}
-	|		'[' UNIVERSAL NUMBER ']' IMPLICIT
+	|		'[' tUNIVERSAL tNUMBER ']' tIMPLICIT
 			{}
 	;
 
@@ -1057,88 +1056,88 @@ valueofObjectSyntax:	valueofSimpleSyntax
 			 */
 	;
 
-SimpleSyntax:		INTEGER			/* (-2147483648..2147483647) */
+SimpleSyntax:		tINTEGER			/* (-2147483648..2147483647) */
 			{
 			}
-	|		INTEGER
-			{
-			}
-			integerSubType
-			{
-			}
-	|		INTEGER
-			{
-			}
-			enumSpec
-			{
-			}
-	|		INTEGER32		/* (-2147483648..2147483647) */
-			{
-			}
-        |		INTEGER32
+	|		tINTEGER
 			{
 			}
 			integerSubType
 			{
 			}
-	|		UPPERCASE_IDENTIFIER
+	|		tINTEGER
 			{
 			}
 			enumSpec
 			{
 			}
-	|		moduleName '.' UPPERCASE_IDENTIFIER enumSpec
+	|		tINTEGER32		/* (-2147483648..2147483647) */
 			{
 			}
-	|		UPPERCASE_IDENTIFIER integerSubType
+        |		tINTEGER32
 			{
 			}
-	|		moduleName '.' UPPERCASE_IDENTIFIER integerSubType
+			integerSubType
 			{
 			}
-	|		OCTET STRING		/* (SIZE (0..65535))	     */
+	|		tUPPERCASE_IDENTIFIER
 			{
 			}
-	|		OCTET STRING
+			enumSpec
+			{
+			}
+	|		moduleName '.' tUPPERCASE_IDENTIFIER enumSpec
+			{
+			}
+	|		tUPPERCASE_IDENTIFIER integerSubType
+			{
+			}
+	|		moduleName '.' tUPPERCASE_IDENTIFIER integerSubType
+			{
+			}
+	|		tOCTET tSTRING		/* (tSIZE (0..65535))	     */
+			{
+			}
+	|		tOCTET tSTRING
 			{
 			}
 			octetStringSubType
 			{
 			}
-	|		UPPERCASE_IDENTIFIER octetStringSubType
+	|		tUPPERCASE_IDENTIFIER octetStringSubType
 			{
 			}
-	|		moduleName '.' UPPERCASE_IDENTIFIER octetStringSubType
+	|		moduleName '.' tUPPERCASE_IDENTIFIER octetStringSubType
 			{
 			}
-	|		OBJECT IDENTIFIER anySubType
+	|		tOBJECT tIDENTIFIER anySubType
 			{
 			}
         ;
 
-valueofSimpleSyntax:	NUMBER			/* 0..2147483647 */
+valueofSimpleSyntax:	tNUMBER			/* 0..2147483647 */
 			/* NOTE: Counter64 must not have a DEFVAL */
 			{
 			}
-	|		NEGATIVENUMBER		/* -2147483648..0 */
+	|		tNEGATIVENUMBER		/* -2147483648..0 */
 			{
 			}
-        |               NUMBER64		/* 0..18446744073709551615 */
+        |               tNUMBER64		/* 0..18446744073709551615 */
 			{
 			}
-	|		NEGATIVENUMBER64	/* -9223372036854775807..0 */
+	|		tNEGATIVENUMBER64	/* -9223372036854775807..0 */
 			{
 			}
-	|		BIN_STRING		/* number or OCTET STRING */
+	|		tBIN_STRING		/* number or OCTET STRING */
 			{
 			}
-	|		HEX_STRING		/* number or OCTET STRING */
+	|		tHEX_STRING		/* number or OCTET STRING */
 			{
 			}
-	|		LOWERCASE_IDENTIFIER	/* enumeration or named oid */
+	|		tLOWERCASE_IDENTIFIER	/* enumeration or named oid */
 			{
 			}
-	|		QUOTED_STRING		/* an OCTET STRING */
+	|		tQUOTED_STRING		/* an OCTET STRING */
 			{
 			}
 			/* NOTE: If the value is an OBJECT IDENTIFIER, then
@@ -1166,69 +1165,69 @@ valueofSimpleSyntax:	NUMBER			/* 0..2147483647 */
  * In a SEQUENCE { ... } there are no sub-types, enumerations or
  * named bits. REF: draft, p.29
  */
-sequenceSimpleSyntax:	INTEGER	anySubType
+sequenceSimpleSyntax:	tINTEGER	anySubType
 			{
 			}
-        |		INTEGER32 anySubType
+        |		tINTEGER32 anySubType
 			{
 			}
-	|		OCTET STRING anySubType
+	|		tOCTET tSTRING anySubType
 			{
 			}
-	|		OBJECT IDENTIFIER anySubType
+	|		tOBJECT tIDENTIFIER anySubType
 			{
 			}
 	;
 
-ApplicationSyntax:	IPADDRESS anySubType
+ApplicationSyntax:	tIPADDRESS anySubType
 			{
 			}
-	|		COUNTER32  /* (0..4294967295)	     */
+	|		tCOUNTER32  /* (0..4294967295)	     */
 			{
 			}
-	|		COUNTER32 integerSubType
+	|		tCOUNTER32 integerSubType
 			{
 			}
-	|		GAUGE32			/* (0..4294967295)	     */
+	|		tGAUGE32			/* (0..4294967295)	     */
 			{
 			}
-	|		GAUGE32 integerSubType
+	|		tGAUGE32 integerSubType
 			{
 			}
-	|		UNSIGNED32		/* (0..4294967295)	     */
+	|		tUNSIGNED32		/* (0..4294967295)	     */
 			{
 			}
-	|		UNSIGNED32
+	|		tUNSIGNED32
 			{
 			}
 			integerSubType
 			{
 			}
-	|		TIMETICKS anySubType
+	|		tTIMETICKS anySubType
 			{
 			}
-	|		OPAQUE			/* IMPLICIT OCTET STRING     */
+	|		tOPAQUE			/* IMPLICIT OCTET STRING     */
 			{
 			}
-	|		OPAQUE octetStringSubType
+	|		tOPAQUE octetStringSubType
 			{
 			}
-	|		COUNTER64
+	|		tCOUNTER64
 			{
 			}
-	|		COUNTER64 integerSubType
+	|		tCOUNTER64 integerSubType
 			{
 			}
-	|		INTEGER64               /* (-9223372036854775807..9223372036854775807) */
+	|		tINTEGER64               /* (-9223372036854775807..9223372036854775807) */
 			{
 			}
-	|		INTEGER64 integerSubType
+	|		tINTEGER64 integerSubType
 			{
 			}
-	|		UNSIGNED64	        /* (0..18446744073709551615) */
+	|		tUNSIGNED64	        /* (0..18446744073709551615) */
 			{
 			}
-	|		UNSIGNED64 integerSubType
+	|		tUNSIGNED64 integerSubType
 			{
 			}
 	;
@@ -1237,31 +1236,31 @@ ApplicationSyntax:	IPADDRESS anySubType
  * In a SEQUENCE { ... } there are no sub-types, enumerations or
  * named bits. REF: draft, p.29
  */
-sequenceApplicationSyntax: IPADDRESS anySubType
+sequenceApplicationSyntax: tIPADDRESS anySubType
 			{
 			}
-	|		COUNTER32 anySubType
+	|		tCOUNTER32 anySubType
 			{
 			}
-	|		GAUGE32	anySubType	/* (0..4294967295)	     */
+	|		tGAUGE32	anySubType	/* (0..4294967295)	     */
 			{
 			}
-	|		UNSIGNED32 anySubType /* (0..4294967295)	     */
+	|		tUNSIGNED32 anySubType /* (0..4294967295)	     */
 			{
 			}
-	|		TIMETICKS anySubType	/* (0..4294967295)	     */
+	|		tTIMETICKS anySubType	/* (0..4294967295)	     */
 			{
 			}
-	|		OPAQUE			/* IMPLICIT OCTET STRING     */
+	|		tOPAQUE			/* IMPLICIT OCTET STRING     */
 			{
 			}
-	|		COUNTER64 anySubType    /* (0..18446744073709551615) */
+	|		tCOUNTER64 anySubType    /* (0..18446744073709551615) */
 			{
 			}
-	|		INTEGER64	        /* (-9223372036854775807..9223372036854775807) */
+	|		tINTEGER64	        /* (-9223372036854775807..9223372036854775807) */
 			{
 			}
-	|		UNSIGNED64	        /* (0..18446744073709551615) */
+	|		tUNSIGNED64	        /* (0..18446744073709551615) */
 			{
 			}
 	;
@@ -1292,7 +1291,7 @@ integerSubType:		'(' ranges ')'		/* at least one range        */
 			{}
 	;
 
-octetStringSubType:	'(' SIZE '(' ranges ')' ')'
+octetStringSubType:	'(' tSIZE '(' ranges ')' ')'
 			/*
 			 * the specification mentions an alternative of an
 			 * empty RHS here. this would lead to reduce/reduce
@@ -1314,27 +1313,27 @@ ranges:			range
 range:			value
 			{
 			}
-	|		value DOT_DOT value
+	|		value tDOT_DOT value
 			{
 			}
 	;
 
-value:			NEGATIVENUMBER
+value:			tNEGATIVENUMBER
 			{
 			}
-	|		NUMBER
+	|		tNUMBER
 			{
 			}
-	|		NEGATIVENUMBER64
+	|		tNEGATIVENUMBER64
 			{
 			}
-	|		NUMBER64
+	|		tNUMBER64
 			{
 			}
-	|		HEX_STRING
+	|		tHEX_STRING
 			{
 			}
-	|		BIN_STRING
+	|		tBIN_STRING
 			{
 			}
 	;
@@ -1352,7 +1351,7 @@ enumItems:		enumItem
 			}
 	;
 
-enumItem:		LOWERCASE_IDENTIFIER
+enumItem:		tLOWERCASE_IDENTIFIER
 			{
 			}
 			'(' enumNumber ')'
@@ -1360,25 +1359,25 @@ enumItem:		LOWERCASE_IDENTIFIER
 			}
 	;
 
-enumNumber:		NUMBER
+enumNumber:		tNUMBER
 			{
 			}
-	|		NEGATIVENUMBER
+	|		tNEGATIVENUMBER
 			{
 			}
 	;
 
-Status:			LOWERCASE_IDENTIFIER
+Status:			tLOWERCASE_IDENTIFIER
 			{
 			}
         ;
 
-Status_Capabilities:	LOWERCASE_IDENTIFIER
+Status_Capabilities:	tLOWERCASE_IDENTIFIER
 			{
 			}
         ;
 
-DisplayPart:		DISPLAY_HINT Text
+DisplayPart:		tDISPLAY_HINT Text
 			{
 			}
         |		/* empty */
@@ -1386,7 +1385,7 @@ DisplayPart:		DISPLAY_HINT Text
 			}
         ;
 
-UnitsPart:		UNITS Text
+UnitsPart:		tUNITS Text
 			{
 			}
         |		/* empty */
@@ -1394,21 +1393,21 @@ UnitsPart:		UNITS Text
 			}
         ;
 
-Access:			LOWERCASE_IDENTIFIER
+Access:			tLOWERCASE_IDENTIFIER
 			{
 			}
         ;
 
-IndexPart:              PIB_INDEX
+IndexPart:              tPIB_INDEX
                         {
                         }
                         '{' Entry '}'
                         {
 			}
-        |		AUGMENTS '{' Entry '}'
+        |		tAUGMENTS '{' Entry '}'
 			{
 			}
-        |		EXTENDS
+        |		tEXTENDS
                         {
                         }
                         '{' Entry '}'
@@ -1419,7 +1418,7 @@ IndexPart:              PIB_INDEX
 			}
 	;
 
-MibIndex:		INDEX
+MibIndex:		tINDEX
                         {
 			}
 			'{' IndexTypes '}'
@@ -1438,7 +1437,7 @@ IndexTypes:		IndexType
 			}
 	;
 
-IndexType:		IMPLIED Index
+IndexType:		tIMPLIED Index
 			{
 			}
 	|		Index
@@ -1456,7 +1455,7 @@ Entry:			ObjectName
 			}
         ;
 
-DefValPart:		DEFVAL '{' Value '}'
+DefValPart:		tDEFVAL '{' Value '}'
 			{
 			}
 	|		/* empty */
@@ -1476,10 +1475,10 @@ BitsValue:		BitNames
 			{}
 	;
 
-BitNames:		LOWERCASE_IDENTIFIER
+BitNames:		tLOWERCASE_IDENTIFIER
 			{
 			}
-	|		BitNames ',' LOWERCASE_IDENTIFIER
+	|		BitNames ',' tLOWERCASE_IDENTIFIER
 			{
 			}
 	;
@@ -1494,7 +1493,7 @@ NotificationName:	objectIdentifier
 			}
 	;
 
-ReferPart:		REFERENCE Text
+ReferPart:		tREFERENCE Text
 			{
 			}
 	|		/* empty */
@@ -1513,15 +1512,15 @@ Revisions:		Revision
 			{}
 	;
 
-Revision:		REVISION ExtUTCTime
+Revision:		tREVISION ExtUTCTime
 			{
 			}
-			DESCRIPTION Text
+			tDESCRIPTION Text
 			{
 			}
 	;
 
-NotificationObjectsPart: OBJECTS '{' Objects '}'
+NotificationObjectsPart: tOBJECTS '{' Objects '}'
 			{
 			}
 	|		/* empty */
@@ -1529,7 +1528,7 @@ NotificationObjectsPart: OBJECTS '{' Objects '}'
 			}
 	;
 
-ObjectGroupObjectsPart:	OBJECTS '{' Objects '}'
+ObjectGroupObjectsPart:	tOBJECTS '{' Objects '}'
 			{
 			}
 	;
@@ -1547,7 +1546,7 @@ Object:			ObjectName
 			}
 	;
 
-NotificationsPart:	NOTIFICATIONS '{' Notifications '}'
+NotificationsPart:	tNOTIFICATIONS '{' Notifications '}'
 			{
 			}
 	;
@@ -1565,12 +1564,12 @@ Notification:		NotificationName
 			}
 	;
 
-Text:			QUOTED_STRING
+Text:			tQUOTED_STRING
 			{
 			}
 	;
 
-ExtUTCTime:		QUOTED_STRING
+ExtUTCTime:		tQUOTED_STRING
 			{
 			}
 	;
@@ -1598,11 +1597,11 @@ subidentifier:
 			{
 				$$ = SubID{ID: -1, Label: $1}
 			}
-	|		NUMBER
+	|		tNUMBER
 			{
 				$$ = SubID{ID: int($1)}
 			}
-	|		LOWERCASE_IDENTIFIER '(' NUMBER ')'
+	|		tLOWERCASE_IDENTIFIER '(' tNUMBER ')'
 			{
 				$$ = SubID{int($3), $1}
 			}
@@ -1618,59 +1617,59 @@ subidentifiers_defval:	subidentifier_defval
 			{}
         ;
 
-subidentifier_defval:	LOWERCASE_IDENTIFIER '(' NUMBER ')'
+subidentifier_defval:	tLOWERCASE_IDENTIFIER '(' tNUMBER ')'
 			{}
-	|		NUMBER
+	|		tNUMBER
 			{}
 	;
 
-objectGroupClause:	LOWERCASE_IDENTIFIER
+objectGroupClause:	tLOWERCASE_IDENTIFIER
 			{
 			}
-			OBJECT_GROUP
+			tOBJECT_GROUP
 			{
 			}
 			ObjectGroupObjectsPart
-			STATUS Status
-			DESCRIPTION Text
+			tSTATUS Status
+			tDESCRIPTION Text
 			{
 			}
 			ReferPart
-			COLON_COLON_EQUAL '{' objectIdentifier '}'
+			tCOLON_COLON_EQUAL '{' objectIdentifier '}'
 			{
 			}
 	;
 
-notificationGroupClause: LOWERCASE_IDENTIFIER
+notificationGroupClause: tLOWERCASE_IDENTIFIER
 			{
 			}
-			NOTIFICATION_GROUP
+			tNOTIFICATION_GROUP
 			{
 			}
 			NotificationsPart
-			STATUS Status
-			DESCRIPTION Text
+			tSTATUS Status
+			tDESCRIPTION Text
 			{
 			}
 			ReferPart
-			COLON_COLON_EQUAL '{' objectIdentifier '}'
+			tCOLON_COLON_EQUAL '{' objectIdentifier '}'
 			{
 			}
 	;
 
-moduleComplianceClause:	LOWERCASE_IDENTIFIER
+moduleComplianceClause:	tLOWERCASE_IDENTIFIER
 			{
 			}
-			MODULE_COMPLIANCE
+			tMODULE_COMPLIANCE
 			{
 			}
-			STATUS Status
-			DESCRIPTION Text
+			tSTATUS Status
+			tDESCRIPTION Text
 			{
 			}
 			ReferPart
 			ComplianceModulePart
-			COLON_COLON_EQUAL '{' objectIdentifier '}'
+			tCOLON_COLON_EQUAL '{' objectIdentifier '}'
 			{
 			}
 	;
@@ -1688,7 +1687,7 @@ ComplianceModules:	ComplianceModule
 			}
 	;
 
-ComplianceModule:	MODULE ComplianceModuleName
+ComplianceModule:	tMODULE ComplianceModuleName
 			{
 			}
 			MandatoryPart
@@ -1697,10 +1696,10 @@ ComplianceModule:	MODULE ComplianceModuleName
 			}
 	;
 
-ComplianceModuleName:	UPPERCASE_IDENTIFIER objectIdentifier
+ComplianceModuleName:	tUPPERCASE_IDENTIFIER objectIdentifier
 			{
 			}
-	|		UPPERCASE_IDENTIFIER
+	|		tUPPERCASE_IDENTIFIER
 			{
 			}
 	|		/* empty, only if contained in MIB module */
@@ -1708,7 +1707,7 @@ ComplianceModuleName:	UPPERCASE_IDENTIFIER objectIdentifier
 			}
 	;
 
-MandatoryPart:		MANDATORY_GROUPS '{' MandatoryGroups '}'
+MandatoryPart:		tMANDATORY_GROUPS '{' MandatoryGroups '}'
 			{
 			}
 	|		/* empty */
@@ -1753,28 +1752,28 @@ Compliance:		ComplianceGroup
 			}
 	;
 
-ComplianceGroup:	GROUP
+ComplianceGroup:	tGROUP
 			{
 			}
 			objectIdentifier
-			DESCRIPTION Text
+			tDESCRIPTION Text
 			{
 			}
 	;
 
-ComplianceObject:	OBJECT
+ComplianceObject:	tOBJECT
 			{
 			}
 			ObjectName
 			SyntaxPart
 			WriteSyntaxPart                 /* modified for SPPI */
 			AccessPart                      /* modified for SPPI */
-			DESCRIPTION Text
+			tDESCRIPTION Text
 			{
 			}
 	;
 
-SyntaxPart:		SYNTAX Syntax
+SyntaxPart:		tSYNTAX Syntax
 			{
 			}
 	|		/* empty */
@@ -1782,7 +1781,7 @@ SyntaxPart:		SYNTAX Syntax
 			}
 	;
 
-WriteSyntaxPart:	WRITE_SYNTAX WriteSyntax
+WriteSyntaxPart:	tWRITE_SYNTAX WriteSyntax
 			{
 			}
 	|		/* empty */
@@ -1795,10 +1794,10 @@ WriteSyntax:		Syntax
 			}
 	;
 
-AccessPart:		MIN_ACCESS Access
+AccessPart:		tMIN_ACCESS Access
 			{
 			}
-        |               PIB_MIN_ACCESS Access
+        |               tPIB_MIN_ACCESS Access
                         {
                         }
 	|		/* empty */
@@ -1806,20 +1805,20 @@ AccessPart:		MIN_ACCESS Access
 			}
 	;
 
-agentCapabilitiesClause: LOWERCASE_IDENTIFIER
+agentCapabilitiesClause: tLOWERCASE_IDENTIFIER
 			{
 			}
-			AGENT_CAPABILITIES
+			tAGENT_CAPABILITIES
 			{
 			}
-			PRODUCT_RELEASE Text
-			STATUS Status_Capabilities
-			DESCRIPTION Text
+			tPRODUCT_RELEASE Text
+			tSTATUS Status_Capabilities
+			tDESCRIPTION Text
 			{
 			}
 			ReferPart
 			ModulePart_Capabilities
-			COLON_COLON_EQUAL '{' objectIdentifier '}'
+			tCOLON_COLON_EQUAL '{' objectIdentifier '}'
 			{
 			}
 	;
@@ -1836,10 +1835,10 @@ Modules_Capabilities:	Module_Capabilities
 			{}
 	;
 
-Module_Capabilities:	SUPPORTS ModuleName_Capabilities
+Module_Capabilities:	tSUPPORTS ModuleName_Capabilities
 			{
 			}
-			INCLUDES '{' CapabilitiesGroups '}'
+			tINCLUDES '{' CapabilitiesGroups '}'
 			VariationPart
 			{
 			}
@@ -1858,10 +1857,10 @@ CapabilitiesGroup:	objectIdentifier
 			}
 	;
 
-ModuleName_Capabilities: UPPERCASE_IDENTIFIER objectIdentifier
+ModuleName_Capabilities: tUPPERCASE_IDENTIFIER objectIdentifier
 			{
 			}
-	|		UPPERCASE_IDENTIFIER
+	|		tUPPERCASE_IDENTIFIER
 			{
 			}
 	;
@@ -1878,7 +1877,7 @@ Variations:		Variation
 			{}
 	;
 
-Variation:		VARIATION ObjectName
+Variation:		tVARIATION ObjectName
 			{
 			}
 			SyntaxPart
@@ -1888,23 +1887,23 @@ Variation:		VARIATION ObjectName
 			DefValPart
 			{
 			}
-			DESCRIPTION Text
+			tDESCRIPTION Text
 			{
 			}
 	;
 
-VariationAccessPart:	ACCESS VariationAccess
+VariationAccessPart:	tACCESS VariationAccess
 			{}
 	|		/* empty */
 			{}
 	;
 
-VariationAccess:	LOWERCASE_IDENTIFIER
+VariationAccess:	tLOWERCASE_IDENTIFIER
 			{
 			}
         ;
 
-CreationPart:		CREATION_REQUIRES '{' Cells '}'
+CreationPart:		tCREATION_REQUIRES '{' Cells '}'
 			{
 			}
 	|		/* empty */

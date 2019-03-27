@@ -41,6 +41,7 @@ func ParseModule(filename string) (*Module, error) {
 	return lex.module, nil
 }
 
+// NotAModuleError is returned when a parsed file is not a valid module file.
 type NotAModuleError string
 
 func (f NotAModuleError) Error() string {
@@ -51,6 +52,8 @@ func (f NotAModuleError) Filename() string {
 	return string(f)
 }
 
+// ModuleName returns the module name for the given file. If the file
+// is not a module file then a NotAModuleError error is returned.
 func ModuleName(filename string) (string, error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -61,10 +64,10 @@ func ModuleName(filename string) (string, error) {
 	lex := NewLexer(r)
 	lval := smiSymType{}
 	tok := lex.Lex(&lval)
-	if tok == UPPERCASE_IDENTIFIER {
+	if tok == tUPPERCASE_IDENTIFIER {
 		moduleName := lval.id
 		tok = lex.Lex(&lval)
-		if tok == DEFINITIONS {
+		if tok == tDEFINITIONS {
 			return moduleName, nil
 		}
 	}

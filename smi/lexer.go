@@ -31,88 +31,88 @@ const (
 type skipState int
 
 var keywords = map[string]int{
-	"ACCESS":             ACCESS,
-	"AGENT-CAPABILITIES": AGENT_CAPABILITIES,
-	"APPLICATION":        APPLICATION,
-	"AUGMENTS":           AUGMENTS,
-	"BEGIN":              BEGIN_,
-	"BITS":               BITS,
-	"CHOICE":             CHOICE,
-	"CONTACT-INFO":       CONTACT_INFO,
-	"CREATION-REQUIRES":  CREATION_REQUIRES,
-	"Counter32":          COUNTER32,
-	"Counter64":          COUNTER64,
-	"DEFINITIONS":        DEFINITIONS,
-	"DEFVAL":             DEFVAL,
-	"DESCRIPTION":        DESCRIPTION,
-	"DISPLAY-HINT":       DISPLAY_HINT,
-	"END":                END,
-	"ENTERPRISE":         ENTERPRISE,
-	"EXPORTS":            EXPORTS,
-	"EXTENDS":            EXTENDS,
-	"FROM":               FROM,
-	"GROUP":              GROUP,
-	"Gauge32":            GAUGE32,
-	"IDENTIFIER":         IDENTIFIER,
-	"IMPLICIT":           IMPLICIT,
-	"IMPLIED":            IMPLIED,
-	"IMPORTS":            IMPORTS,
-	"INCLUDES":           INCLUDES,
-	"INDEX":              INDEX,
-	"INSTALL-ERRORS":     INSTALL_ERRORS,
-	"INTEGER":            INTEGER,
-	"Integer32":          INTEGER32,
-	"Integer64":          INTEGER64,
-	"IpAddress":          IPADDRESS,
-	"LAST-UPDATED":       LAST_UPDATED,
-	"MACRO":              MACRO,
-	"MANDATORY-GROUPS":   MANDATORY_GROUPS,
-	"MAX-ACCESS":         MAX_ACCESS,
-	"MIN-ACCESS":         MIN_ACCESS,
-	"MODULE":             MODULE,
-	"MODULE-COMPLIANCE":  MODULE_COMPLIANCE,
-	"MODULE-IDENTITY":    MODULE_IDENTITY,
-	"NOTIFICATION-GROUP": NOTIFICATION_GROUP,
-	"NOTIFICATION-TYPE":  NOTIFICATION_TYPE,
-	"NOTIFICATIONS":      NOTIFICATIONS,
-	"OBJECT":             OBJECT,
-	"OBJECT-GROUP":       OBJECT_GROUP,
-	"OBJECT-IDENTITY":    OBJECT_IDENTITY,
-	"OBJECT-TYPE":        OBJECT_TYPE,
-	"OBJECTS":            OBJECTS,
-	"OCTET":              OCTET,
-	"OF":                 OF,
-	"ORGANIZATION":       ORGANIZATION,
-	"Opaque":             OPAQUE,
-	"PIB-ACCESS":         PIB_ACCESS,
-	"PIB-DEFINITIONS":    PIB_DEFINITIONS,
-	"PIB-INDEX":          PIB_INDEX,
-	"PIB-MIN-ACCESS":     PIB_MIN_ACCESS,
-	"PIB-REFERENCES":     PIB_REFERENCES,
-	"PIB-TAG":            PIB_TAG,
-	"POLICY-ACCESS":      POLICY_ACCESS,
-	"PRODUCT-RELEASE":    PRODUCT_RELEASE,
-	"REFERENCE":          REFERENCE,
-	"REVISION":           REVISION,
-	"SEQUENCE":           SEQUENCE,
-	"SIZE":               SIZE,
-	"STATUS":             STATUS,
-	"STRING":             STRING,
-	"SUBJECT-CATEGORIES": SUBJECT_CATEGORIES,
-	"SUPPORTS":           SUPPORTS,
-	"SYNTAX":             SYNTAX,
-	"TEXTUAL-CONVENTION": TEXTUAL_CONVENTION,
-	"TimeTicks":          TIMETICKS,
-	"TRAP-TYPE":          TRAP_TYPE,
-	"UNIQUENESS":         UNIQUENESS,
-	"UNITS":              UNITS,
-	"UNIVERSAL":          UNIVERSAL,
-	"Unsigned32":         UNSIGNED32,
-	"Unsigned64":         UNSIGNED64,
-	"VALUE":              VALUE,
-	"VARIABLES":          VARIABLES,
-	"VARIATION":          VARIATION,
-	"WRITE-SYNTAX":       WRITE_SYNTAX,
+	"ACCESS":             tACCESS,
+	"AGENT-CAPABILITIES": tAGENT_CAPABILITIES,
+	"APPLICATION":        tAPPLICATION,
+	"AUGMENTS":           tAUGMENTS,
+	"BEGIN":              tBEGIN_,
+	"BITS":               tBITS,
+	"CHOICE":             tCHOICE,
+	"CONTACT-INFO":       tCONTACT_INFO,
+	"CREATION-REQUIRES":  tCREATION_REQUIRES,
+	"Counter32":          tCOUNTER32,
+	"Counter64":          tCOUNTER64,
+	"DEFINITIONS":        tDEFINITIONS,
+	"DEFVAL":             tDEFVAL,
+	"DESCRIPTION":        tDESCRIPTION,
+	"DISPLAY-HINT":       tDISPLAY_HINT,
+	"END":                tEND,
+	"ENTERPRISE":         tENTERPRISE,
+	"EXPORTS":            tEXPORTS,
+	"EXTENDS":            tEXTENDS,
+	"FROM":               tFROM,
+	"GROUP":              tGROUP,
+	"Gauge32":            tGAUGE32,
+	"IDENTIFIER":         tIDENTIFIER,
+	"IMPLICIT":           tIMPLICIT,
+	"IMPLIED":            tIMPLIED,
+	"IMPORTS":            tIMPORTS,
+	"INCLUDES":           tINCLUDES,
+	"INDEX":              tINDEX,
+	"INSTALL-ERRORS":     tINSTALL_ERRORS,
+	"INTEGER":            tINTEGER,
+	"Integer32":          tINTEGER32,
+	"Integer64":          tINTEGER64,
+	"IpAddress":          tIPADDRESS,
+	"LAST-UPDATED":       tLAST_UPDATED,
+	"MACRO":              tMACRO,
+	"MANDATORY-GROUPS":   tMANDATORY_GROUPS,
+	"MAX-ACCESS":         tMAX_ACCESS,
+	"MIN-ACCESS":         tMIN_ACCESS,
+	"MODULE":             tMODULE,
+	"MODULE-COMPLIANCE":  tMODULE_COMPLIANCE,
+	"MODULE-IDENTITY":    tMODULE_IDENTITY,
+	"NOTIFICATION-GROUP": tNOTIFICATION_GROUP,
+	"NOTIFICATION-TYPE":  tNOTIFICATION_TYPE,
+	"NOTIFICATIONS":      tNOTIFICATIONS,
+	"OBJECT":             tOBJECT,
+	"OBJECT-GROUP":       tOBJECT_GROUP,
+	"OBJECT-IDENTITY":    tOBJECT_IDENTITY,
+	"OBJECT-TYPE":        tOBJECT_TYPE,
+	"OBJECTS":            tOBJECTS,
+	"OCTET":              tOCTET,
+	"OF":                 tOF,
+	"ORGANIZATION":       tORGANIZATION,
+	"Opaque":             tOPAQUE,
+	"PIB-ACCESS":         tPIB_ACCESS,
+	"PIB-DEFINITIONS":    tPIB_DEFINITIONS,
+	"PIB-INDEX":          tPIB_INDEX,
+	"PIB-MIN-ACCESS":     tPIB_MIN_ACCESS,
+	"PIB-REFERENCES":     tPIB_REFERENCES,
+	"PIB-TAG":            tPIB_TAG,
+	"POLICY-ACCESS":      tPOLICY_ACCESS,
+	"PRODUCT-RELEASE":    tPRODUCT_RELEASE,
+	"REFERENCE":          tREFERENCE,
+	"REVISION":           tREVISION,
+	"SEQUENCE":           tSEQUENCE,
+	"SIZE":               tSIZE,
+	"STATUS":             tSTATUS,
+	"STRING":             tSTRING,
+	"SUBJECT-CATEGORIES": tSUBJECT_CATEGORIES,
+	"SUPPORTS":           tSUPPORTS,
+	"SYNTAX":             tSYNTAX,
+	"TEXTUAL-CONVENTION": tTEXTUAL_CONVENTION,
+	"TimeTicks":          tTIMETICKS,
+	"TRAP-TYPE":          tTRAP_TYPE,
+	"UNIQUENESS":         tUNIQUENESS,
+	"UNITS":              tUNITS,
+	"UNIVERSAL":          tUNIVERSAL,
+	"Unsigned32":         tUNSIGNED32,
+	"Unsigned64":         tUNSIGNED64,
+	"VALUE":              tVALUE,
+	"VARIABLES":          tVARIABLES,
+	"VARIATION":          tVARIATION,
+	"WRITE-SYNTAX":       tWRITE_SYNTAX,
 }
 
 type Lexer struct {
@@ -266,9 +266,9 @@ func (lex *Lexer) consumeIdent(lval *smiSymType) int {
 		return tok
 	}
 
-	tok := UPPERCASE_IDENTIFIER
+	tok := tUPPERCASE_IDENTIFIER
 	if isLowerByte(lval.id[0]) {
-		tok = LOWERCASE_IDENTIFIER
+		tok = tLOWERCASE_IDENTIFIER
 	}
 	return tok
 }
@@ -327,11 +327,11 @@ func (lex *Lexer) consumeSingleQuote(lval *smiSymType) int {
 	t := lex.peek()
 	lex.skip(1)
 	if t == 'h' || t == 'H' {
-		return HEX_STRING
+		return tHEX_STRING
 	}
 	if t == 'b' || t == 'B' {
 		if binOnly {
-			return BIN_STRING
+			return tBIN_STRING
 		}
 		lex.err = fmt.Errorf("expected H character")
 		return lexEOF
@@ -363,7 +363,7 @@ func (lex *Lexer) consumeDoubleQuote(lval *smiSymType) int {
 		}
 		lex.next()
 	}
-	return QUOTED_STRING
+	return tQUOTED_STRING
 }
 
 func (lex *Lexer) consumeUnsigned(lval *smiSymType) int {
@@ -381,10 +381,10 @@ func (lex *Lexer) consumeUnsigned(lval *smiSymType) int {
 	}
 	if i <= uint64(math.MaxUint32) {
 		lval.unsigned32 = uint32(i)
-		return NUMBER
+		return tNUMBER
 	}
 	lval.unsigned64 = i
-	return NUMBER64
+	return tNUMBER64
 }
 
 func (lex *Lexer) consumeSigned(lval *smiSymType) int {
@@ -403,17 +403,17 @@ func (lex *Lexer) consumeSigned(lval *smiSymType) int {
 	}
 	if i <= int64(math.MaxInt32) {
 		lval.integer32 = int32(i)
-		return NEGATIVENUMBER
+		return tNEGATIVENUMBER
 	}
 	lval.integer64 = i
-	return NEGATIVENUMBER64
+	return tNEGATIVENUMBER64
 }
 
 func (lex *Lexer) consumeColon(lval *smiSymType) int {
 	b := lex.next()
 	if b2 := lex.peek2(); b2[0] == ':' && b2[1] == '=' {
 		lex.skip(2)
-		return COLON_COLON_EQUAL
+		return tCOLON_COLON_EQUAL
 	}
 	return int(b)
 }
@@ -422,7 +422,7 @@ func (lex *Lexer) consumeDot(lval *smiSymType) int {
 	b := lex.next()
 	if bb := lex.peek(); bb == '.' {
 		lex.skip(1)
-		return DOT_DOT
+		return tDOT_DOT
 	}
 	return int(b)
 }
@@ -458,11 +458,11 @@ func (lex *Lexer) getToken(lval *smiSymType) int {
 func (lex *Lexer) nextState(tok int) {
 	switch lex.state {
 	case skipNone:
-		if tok == CHOICE {
+		if tok == tCHOICE {
 			lex.state = skipChoice
-		} else if tok == EXPORTS {
+		} else if tok == tEXPORTS {
 			lex.state = skipExports
-		} else if tok == MACRO {
+		} else if tok == tMACRO {
 			lex.state = skipMacro
 		}
 	case skipChoice:
@@ -474,7 +474,7 @@ func (lex *Lexer) nextState(tok int) {
 			lex.state = skipNone
 		}
 	case skipMacro:
-		if tok == END || tok == lexEOF {
+		if tok == tEND || tok == lexEOF {
 			lex.state = skipNone
 		}
 	default:

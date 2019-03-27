@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/hallidave/mibtool/mibs"
 	"github.com/hallidave/mibtool/smi"
 	"os"
 	"os/user"
@@ -21,7 +20,7 @@ func userMibDir() string {
 	return defaultDir
 }
 
-func dumpModule(mib *mibs.MIB, modName string) {
+func dumpModule(mib *smi.MIB, modName string) {
 	mib.VisitSymbols(func(sym *smi.Symbol, oid smi.OID) {
 		if sym.Module.Name == modName {
 			fmt.Printf("%-40s %s\n", sym, oid)
@@ -35,7 +34,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	mib := mibs.NewMIB(userMibDir())
+	mib := smi.NewMIB(userMibDir())
 	err := mib.LoadModules(os.Args[2])
 	if err != nil {
 		fmt.Println(err)

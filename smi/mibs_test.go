@@ -3,18 +3,17 @@
 // Use of this source code is governed by an MIT-style license
 // that can be found in the LICENSE file.
 
-package mibs_test
+package smi_test
 
 import (
 	"fmt"
-	"github.com/hallidave/mibtool/mibs"
 	"github.com/hallidave/mibtool/smi"
 	"log"
 	"testing"
 )
 
 func TestLoadModules(t *testing.T) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules()
 	if err != nil {
 		t.Error(err)
@@ -28,7 +27,7 @@ func TestLoadModules(t *testing.T) {
 }
 
 func TestLoadTwice(t *testing.T) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("HOST-RESOURCES-MIB")
 	if err != nil {
 		t.Error(err)
@@ -56,7 +55,7 @@ func TestLoadTwice(t *testing.T) {
 }
 
 func TestSymbolLookup(t *testing.T) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("SNMPv2-MIB")
 	if err != nil {
 		t.Error(err)
@@ -91,7 +90,7 @@ func TestSymbolString(t *testing.T) {
 		{smi.OID{1, 3, 6, 1, 2, 1, 15, 3, 1, 1, 1}, "BGP4-MIB::bgpPeerIdentifier.1"},
 	}
 
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("SNMPv2-MIB", "BGP4-MIB")
 	if err != nil {
 		t.Error(err)
@@ -106,7 +105,7 @@ func TestSymbolString(t *testing.T) {
 }
 
 func TestOID(t *testing.T) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("IF-MIB")
 	if err != nil {
 		t.Error(err)
@@ -123,7 +122,7 @@ func TestOID(t *testing.T) {
 }
 
 func TestLoadAll(t *testing.T) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	mib.Debug = false
 	err := mib.LoadModules()
 	if err != nil {
@@ -134,7 +133,7 @@ func TestLoadAll(t *testing.T) {
 
 func BenchmarkLoadIFMIB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		mib := mibs.NewMIB("testdata")
+		mib := smi.NewMIB("testdata")
 		err := mib.LoadModules("IF-MIB")
 		if err != nil {
 			b.Error(err)
@@ -143,7 +142,7 @@ func BenchmarkLoadIFMIB(b *testing.B) {
 }
 
 func BenchmarkResolveOID(b *testing.B) {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("IF-MIB")
 	if err != nil {
 		b.Error(err)
@@ -161,7 +160,7 @@ func BenchmarkResolveOID(b *testing.B) {
 }
 
 func ExampleMIB_VisitSymbols() {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	mib.Debug = true
 	err := mib.LoadModules("SNMPv2-SMI")
 	if err != nil {
@@ -189,7 +188,7 @@ func ExampleMIB_VisitSymbols() {
 }
 
 func ExampleMIB_OID() {
-	mib := mibs.NewMIB("testdata")
+	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("IF-MIB")
 	if err != nil {
 		log.Fatal(err)

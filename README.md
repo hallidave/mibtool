@@ -1,7 +1,7 @@
 # SNMP MIB Parser for Go
 
 [![Build Status](https://travis-ci.com/hallidave/mibtool.svg?branch=master)](https://travis-ci.com/hallidave/mibtool)
-[![GoDoc](https://godoc.org/github.com/hallidave/mibtool/mibs?status.svg)](https://godoc.org/github.com/hallidave/mibtool/mibs)
+[![GoDoc](https://godoc.org/github.com/hallidave/mibtool/smi?status.svg)](https://godoc.org/github.com/hallidave/mibtool/smi)
 ![Version](https://img.shields.io/github/tag/hallidave/mibtool.svg?label=version)
 
 The `mibtool` module contains packages for parsing SNMP MIBs and querying
@@ -13,11 +13,11 @@ to make more information available.
 
 ## Installation
 
-    go get -u github.com/hallidave/mibtool/mibs
+    go get -u github.com/hallidave/mibtool/smi
 
 ## Examples
 
-	mib := mibs.NewMIB("/usr/share/snmp/mibs/iana", "/usr/share/snmp/mibs/ietf")
+	mib := smi.NewMIB("/usr/share/snmp/mibs/iana", "/usr/share/snmp/mibs/ietf")
 	mib.Debug = true
 	err := mib.LoadModules("IF-MIB")
 	if err != nil {
