@@ -8,7 +8,7 @@ package mibs
 
 import (
 	"fmt"
-	"github.com/hallidave/go-smi/smi"
+	"github.com/hallidave/mibtool/smi"
 	"io/ioutil"
 	"log"
 	"os"

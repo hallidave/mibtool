@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/hallidave/go-smi/mibs"
-	"github.com/hallidave/go-smi/smi"
+	"github.com/hallidave/mibtool/mibs"
+	"github.com/hallidave/mibtool/smi"
 	"os"
 	"os/user"
 	"path/filepath"

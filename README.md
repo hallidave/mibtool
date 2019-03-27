@@ -1,9 +1,10 @@
 # SNMP MIB Parser for Go
 
-[![Build Status](https://travis-ci.com/hallidave/go-smi.svg?branch=master)](https://travis-ci.com/hallidave/go-smi)
-[![GoDoc](https://godoc.org/github.com/hallidave/go-smi/mibs?status.svg)](https://godoc.org/github.com/hallidave/go-smi/mibs)
+[![Build Status](https://travis-ci.com/hallidave/mibtool.svg?branch=master)](https://travis-ci.com/hallidave/mibtool)
+[![GoDoc](https://godoc.org/github.com/hallidave/mibtool/mibs?status.svg)](https://godoc.org/github.com/hallidave/mibtool/mibs)
+![Version](https://img.shields.io/github/tag/hallidave/mibtool.svg?label=version)
 
-The `go-smi` module contains packages for parsing SNMP MIBs and querying
+The `mibtool` module contains packages for parsing SNMP MIBs and querying
 the information contained in them.
 
 The information that can currently be extracted from MIBs is limited to
@@ -12,7 +13,7 @@ to make more information available.
 
 ## Installation
 
-    go get github.com/hallidave/go-smi/mibs
+    go get -u github.com/hallidave/mibtool/mibs
 
 ## Examples
 

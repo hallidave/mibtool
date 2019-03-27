@@ -7,8 +7,8 @@ package mibs_test
 
 import (
 	"fmt"
-	"github.com/hallidave/go-smi/mibs"
-	"github.com/hallidave/go-smi/smi"
+	"github.com/hallidave/mibtool/mibs"
+	"github.com/hallidave/mibtool/smi"
 	"log"
 	"testing"
 )
@@ -195,7 +195,10 @@ func ExampleMIB_OID() {
 		log.Fatal(err)
 	}
 
-	examples := []string{"ifTable", "IF-MIB::ifIndex", "ifType.3", "IF-MIB::ifOperStatus.4"}
+	examples := []string{
+		"ifTable", "IF-MIB::ifIndex",
+		"ifType.3", "IF-MIB::ifOperStatus.4",
+	}
 	for _, example := range examples {
 		oid, err := mib.OID(example)
 		if err != nil {
