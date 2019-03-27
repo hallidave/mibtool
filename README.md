@@ -1,5 +1,8 @@
 # SNMP MIB Parser for Go
 
+[![Build Status](https://travis-ci.com/hallidave/go-smi.svg?branch=master)](https://travis-ci.com/hallidave/go-smi)
+[![GoDoc](https://godoc.org/github.com/hallidave/go-smi/mibs?status.svg)](https://godoc.org/github.com/hallidave/go-smi/mibs)
+
 The `go-smi` module contains packages for parsing SNMP MIBs and querying
 the information contained in them.
 
