@@ -446,11 +446,19 @@ import:			importIdentifiers
 
 importIdentifiers:	importIdentifier
 			{
-				$$ = []string{$1}
+				if $1 == "" {
+					$$ = []string{}
+				} else {
+					$$ = []string{$1}
+				}
 			}
 	|		importIdentifiers ',' importIdentifier
 			{
-				$$ = append($1, $3)
+				if $3 == "" {
+					$$ = $1
+				} else {
+					$$ = append($1, $3)
+				}
 			}
 	;
 
@@ -460,6 +468,9 @@ importIdentifiers:	importIdentifier
 importIdentifier:	tLOWERCASE_IDENTIFIER
 	|		tUPPERCASE_IDENTIFIER
 	|		importedKeyword
+			{
+				$$ = ""
+			}
 	;
 
 /*

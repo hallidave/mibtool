@@ -242,9 +242,14 @@ func (mib *MIB) loadModule(modName string) error {
 
 func (mib *MIB) loadImports(imports []Import) error {
 	for _, imp := range imports {
-		err := mib.loadModule(imp.From)
-		if err != nil {
-			return err
+		// We ignore keywords that are imported, so if all of the
+		// symbols were keywords then the list of symbols is empty
+		// and there is nothing to load.
+		if len(imp.Symbols) > 0 {
+			err := mib.loadModule(imp.From)
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil
