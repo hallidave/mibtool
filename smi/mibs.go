@@ -3,7 +3,7 @@
 // Use of this source code is governed by an MIT-style license
 // that can be found in the LICENSE file.
 
-// Package mibs implements a parser for SNMP MIBs.
+// Package smi implements a parser for SNMP MIBs.
 package smi
 
 import (
@@ -120,7 +120,7 @@ func (mib *MIB) indexModules() error {
 		var unresolved []parentRef
 		for _, n := range mod.Nodes {
 			if len(n.IDs) < 2 {
-				return fmt.Errorf("%s: unknown IDs format: %v\n", modName, n.IDs)
+				return fmt.Errorf("%s: unknown IDs format: %v", modName, n.IDs)
 			}
 			parentLabel := n.IDs[0].Label
 			if parentLabel == "" {
@@ -319,7 +319,7 @@ func scanDir(dirname string, scanMods *map[string]*Module) error {
 // Symbol returns the Symbol and an OID index for the specified OID.
 func (mib *MIB) Symbol(oid OID) (*Symbol, OID) {
 	sym := mib.Root
-	var prev *Symbol = nil
+	var prev *Symbol
 	for i := 0; ; {
 		if sym != nil && sym.ID == oid[i] {
 			i++

@@ -21,6 +21,7 @@ func mustClose(closer io.Closer) {
 	}
 }
 
+// ParseModule attempts to parse a MIB module from the given file
 func ParseModule(filename string) (*Module, error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -48,6 +49,7 @@ func (f NotAModuleError) Error() string {
 	return fmt.Sprintf("not a module file: %s", f)
 }
 
+// Filename returns the name of the file that is not a valid module.
 func (f NotAModuleError) Filename() string {
 	return string(f)
 }

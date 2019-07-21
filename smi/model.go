@@ -15,6 +15,7 @@ import (
 // up the Nodes in a Module.
 type NodeType int
 
+// NodeType values for the supported node types
 const (
 	NodeNotSupported NodeType = iota
 	NodeModuleID
@@ -23,6 +24,7 @@ const (
 	NodeNotification
 )
 
+// SubID is a label and/or ID associated with a Node
 type SubID struct {
 	ID    int
 	Label string
@@ -79,11 +81,11 @@ type Symbol struct {
 func (s *Symbol) String() string {
 	if s.Module == nil {
 		return s.Name
-	} else {
-		return s.Module.Name + "::" + s.Name
 	}
+	return s.Module.Name + "::" + s.Name
 }
 
+// The OID type represents a dot-formated MIB object ID
 type OID []int
 
 func (oid OID) String() string {
@@ -94,6 +96,7 @@ func (oid OID) String() string {
 	return strings.Join(parts, ".")
 }
 
+// Equal returns true if the two object IDs have the same value
 func (oid OID) Equal(other OID) bool {
 	if len(oid) != len(other) {
 		return false

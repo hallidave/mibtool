@@ -115,6 +115,7 @@ var keywords = map[string]int{
 	"WRITE-SYNTAX":       tWRITE_SYNTAX,
 }
 
+// Lexer holds the current state of the lexer
 type Lexer struct {
 	s           *bufio.Scanner
 	line        []byte
@@ -482,6 +483,7 @@ func (lex *Lexer) nextState(tok int) {
 	}
 }
 
+// Lex returns the next token on the input stream
 func (lex *Lexer) Lex(lval *smiSymType) int {
 	switch lex.state {
 	case skipNone:
@@ -501,9 +503,10 @@ func (lex *Lexer) Lex(lval *smiSymType) int {
 }
 
 func (lex *Lexer) Error(e string) {
-	lex.err = fmt.Errorf("%s: %s\n", lex.pos(), e)
+	lex.err = fmt.Errorf("%s: %s", lex.pos(), e)
 }
 
+// NewLexer creates a new lexer instance
 func NewLexer(r io.Reader) *Lexer {
 	return &Lexer{s: bufio.NewScanner(r)}
 }
