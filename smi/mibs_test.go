@@ -7,9 +7,10 @@ package smi_test
 
 import (
 	"fmt"
-	"github.com/hallidave/mibtool/smi"
 	"log"
 	"testing"
+
+	"github.com/hallidave/mibtool/smi"
 )
 
 func TestLoadModules(t *testing.T) {
@@ -105,19 +106,39 @@ func TestSymbolString(t *testing.T) {
 }
 
 func TestOID(t *testing.T) {
+	tests := []struct {
+		in       string
+		expected smi.OID
+	}{
+		{"1.3.6.1.2.1.2", smi.OID{1, 3, 6, 1, 2, 1, 2}},
+		{"IF-MIB::ifTable.1.2.3", smi.OID{1, 3, 6, 1, 2, 1, 2, 2, 1, 2, 3}},
+		{"IF-MIB::ifTable", smi.OID{1, 3, 6, 1, 2, 1, 2, 2}},
+		{"ifTable", smi.OID{1, 3, 6, 1, 2, 1, 2, 2}},
+		{"sysDescr.0", smi.OID{1, 3, 6, 1, 2, 1, 1, 1, 0}},
+		{"IF-MIB::1.3.6.1.2.1.2", nil},
+		{"IF-MIB::sysDescr.0", nil},
+		{"foo", nil},
+		{"foo.1", nil},
+		{"FOO::", nil},
+		{"IF-MIB::foo", nil},
+	}
+
 	mib := smi.NewMIB("testdata")
 	err := mib.LoadModules("IF-MIB")
 	if err != nil {
 		t.Error(err)
 	}
-	oid, err := mib.OID("IF-MIB::ifTable.1.2.3")
-	if err != nil {
-		t.Error(err)
-	}
-	expected := smi.OID{1, 3, 6, 1, 2, 1, 2, 2, 1, 2, 3}
 
-	if !oid.Equal(expected) {
-		t.Errorf("expected %s, got %s", expected, oid)
+	for _, test := range tests {
+		result, err := mib.OID(test.in)
+		if err != nil {
+			if test.expected != nil {
+				t.Error(err)
+			}
+		}
+		if !result.Equal(test.expected) {
+			t.Errorf("got %s, expected %s", result, test.expected)
+		}
 	}
 }
 

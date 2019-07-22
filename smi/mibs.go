@@ -380,7 +380,8 @@ func (mib *MIB) OID(name string) (OID, error) {
 	if modulePart == "" {
 		sym = mib.Symbols[namePart]
 		if sym == nil {
-			return nil, fmt.Errorf("name %s not in MIB", namePart)
+			indexPart = name
+			namePart = ""
 		}
 	} else {
 		mod := mib.Modules[modulePart]
@@ -405,8 +406,10 @@ func (mib *MIB) OID(name string) (OID, error) {
 		}
 	}
 
+	if sym == nil {
+		return idx, nil
+	}
 	oid := mib.symbolOID(sym)
-
 	return append(oid, idx...), nil
 }
 
