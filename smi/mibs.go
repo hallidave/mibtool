@@ -3,7 +3,7 @@
 // Use of this source code is governed by an MIT-style license
 // that can be found in the LICENSE file.
 
-// Package smi implements a parser for SNMP MIBs.
+// Package mibs implements a parser for SNMP MIBs.
 package smi
 
 import (
@@ -53,6 +53,11 @@ func NewMIB(dirs ...string) *MIB {
 		Symbols: make(map[string]*Symbol),
 	}
 
+	node := Node{ //---create a mib object which will be linked by root symbol
+		Label: "iso",
+		IDs:   []SubID{{ID: 1}},
+	}
+
 	root := Symbol{
 		Name:         "iso",
 		ID:           1,
@@ -60,6 +65,8 @@ func NewMIB(dirs ...string) *MIB {
 		Parent:       nil,
 		ChildByLabel: make(map[string]*Symbol),
 		ChildByID:    make(map[int]*Symbol),
+
+		Node: &node, //---link to a mib object
 	}
 	mib.Root = &root
 	mib.Symbols[root.Name] = &root
@@ -118,9 +125,12 @@ func (mib *MIB) indexModules() error {
 		}
 
 		var unresolved []parentRef
-		for _, n := range mod.Nodes {
+
+		for n_index, _ := range mod.Nodes {
+			n := &mod.Nodes[n_index] //---Maybe using by reference is better than by value
+
 			if len(n.IDs) < 2 {
-				return fmt.Errorf("%s: unknown IDs format: %v", modName, n.IDs)
+				return fmt.Errorf("%s: unknown IDs format: %v\n", modName, n.IDs)
 			}
 			parentLabel := n.IDs[0].Label
 			if parentLabel == "" {
@@ -137,6 +147,7 @@ func (mib *MIB) indexModules() error {
 				if id == -1 {
 					return fmt.Errorf("%s: expected numeric index: %v", modName, n.IDs)
 				}
+
 				var label string
 				if i < len(n.IDs)-1 {
 					label = ""
@@ -144,9 +155,12 @@ func (mib *MIB) indexModules() error {
 					label = n.Label
 				}
 				sym := &Symbol{
-					Name:         label,
-					ID:           id,
-					Module:       mod,
+					Name:   label,
+					ID:     id,
+					Module: mod,
+
+					Node: n, //---link to a mib object
+
 					Parent:       parent,
 					ChildByLabel: make(map[string]*Symbol),
 					ChildByID:    make(map[int]*Symbol),
@@ -242,14 +256,9 @@ func (mib *MIB) loadModule(modName string) error {
 
 func (mib *MIB) loadImports(imports []Import) error {
 	for _, imp := range imports {
-		// We ignore keywords that are imported, so if all of the
-		// symbols were keywords then the list of symbols is empty
-		// and there is nothing to load.
-		if len(imp.Symbols) > 0 {
-			err := mib.loadModule(imp.From)
-			if err != nil {
-				return err
-			}
+		err := mib.loadModule(imp.From)
+		if err != nil {
+			return err
 		}
 	}
 	return nil
@@ -319,7 +328,7 @@ func scanDir(dirname string, scanMods *map[string]*Module) error {
 // Symbol returns the Symbol and an OID index for the specified OID.
 func (mib *MIB) Symbol(oid OID) (*Symbol, OID) {
 	sym := mib.Root
-	var prev *Symbol
+	var prev *Symbol = nil
 	for i := 0; ; {
 		if sym != nil && sym.ID == oid[i] {
 			i++
@@ -380,8 +389,7 @@ func (mib *MIB) OID(name string) (OID, error) {
 	if modulePart == "" {
 		sym = mib.Symbols[namePart]
 		if sym == nil {
-			indexPart = name
-			namePart = ""
+			return nil, fmt.Errorf("name %s not in MIB", namePart)
 		}
 	} else {
 		mod := mib.Modules[modulePart]
@@ -406,10 +414,8 @@ func (mib *MIB) OID(name string) (OID, error) {
 		}
 	}
 
-	if sym == nil {
-		return idx, nil
-	}
 	oid := mib.symbolOID(sym)
+
 	return append(oid, idx...), nil
 }
 

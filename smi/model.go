@@ -15,7 +15,6 @@ import (
 // up the Nodes in a Module.
 type NodeType int
 
-// NodeType values for the supported node types
 const (
 	NodeNotSupported NodeType = iota
 	NodeModuleID
@@ -24,7 +23,6 @@ const (
 	NodeNotification
 )
 
-// SubID is a label and/or ID associated with a Node
 type SubID struct {
 	ID    int
 	Label string
@@ -50,8 +48,14 @@ type Import struct {
 // A Node represents a parse node in an SMI document
 type Node struct {
 	Label string
-	Type  NodeType
-	IDs   []SubID
+
+	Syntax      string //---support more properties of mib object
+	Access      string
+	Status      string
+	Description string
+
+	Type NodeType
+	IDs  []SubID
 }
 
 // A Module contains all of the parse results for a single module file.
@@ -70,9 +74,12 @@ type Module struct {
 // IDs in the path from the root of the tree to the symbol is the
 // object identifier (OID) of the symbol.
 type Symbol struct {
-	Name         string
-	ID           int
-	Module       *Module
+	Name   string
+	ID     int
+	Module *Module
+
+	Node *Node //---link to a mib object
+
 	Parent       *Symbol
 	ChildByLabel map[string]*Symbol
 	ChildByID    map[int]*Symbol
@@ -81,11 +88,11 @@ type Symbol struct {
 func (s *Symbol) String() string {
 	if s.Module == nil {
 		return s.Name
+	} else {
+		return s.Module.Name + "::" + s.Name
 	}
-	return s.Module.Name + "::" + s.Name
 }
 
-// The OID type represents a dot-formated MIB object ID
 type OID []int
 
 func (oid OID) String() string {
@@ -96,7 +103,6 @@ func (oid OID) String() string {
 	return strings.Join(parts, ".")
 }
 
-// Equal returns true if the two object IDs have the same value
 func (oid OID) Equal(other OID) bool {
 	if len(oid) != len(other) {
 		return false
